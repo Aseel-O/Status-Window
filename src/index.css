@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────────────────────────────────────────────────────────────────────
+   Theme tokens. Dark is the default ("status window at night"); `.light`
+   on <html> switches to a warm, parchment-toned light theme. All colors
+   are space-separated RGB triples so Tailwind's rgb(var(..) / <alpha>)
+   pattern can apply opacity modifiers (bg-panel/80 etc) on top of them.
+   ─────────────────────────────────────────────────────────────────────── */
+:root {
+  --c-app: 11 12 20;            /* #0B0C14 */
+  --c-panel: 27 30 46;          /* #1B1E2E */
+  --c-panel-soft: 38 42 62;     /* #262A3E */
+  --c-input: 18 19 28;          /* #12131C */
+  --c-border: 52 58 84;         /* #343A54 */
+  --c-fg: 226 232 240;          /* #E2E8F0 */
+  --c-fg-secondary: 148 163 184;/* #94A3B8 */
+  --c-fg-muted: 100 116 139;    /* #64748B */
+  --c-accent: 232 184 109;      /* #E8B86D */
+  --c-accent-strong: 240 204 140;/* #F0CC8C */
+  --c-accent-on: 11 12 20;      /* text placed on top of accent-colored buttons */
+  --c-success: 134 217 155;     /* #86D99B */
+  --c-danger: 240 119 107;      /* #F0776B */
+  --c-shadow-alpha: 0.6;
+  color-scheme: dark;
+}
+
+html.light {
+  --c-app: 250 248 244;         /* #FAF8F4 warm paper */
+  --c-panel: 255 255 255;
+  --c-panel-soft: 243 240 234;  /* #F3F0EA */
+  --c-input: 255 255 255;
+  --c-border: 224 217 201;      /* #E0D9C9 */
+  --c-fg: 30 27 20;             /* #1E1B14 */
+  --c-fg-secondary: 90 85 74;   /* #5A554A */
+  --c-fg-muted: 138 131 115;    /* #8A8373 */
+  --c-accent: 176 116 22;       /* #B07416 deep amber, legible on paper */
+  --c-accent-strong: 148 96 14; /* #94600E */
+  --c-accent-on: 255 255 255;
+  --c-success: 30 138 74;       /* #1E8A4A */
+  --c-danger: 193 63 53;        /* #C13F35 */
+  --c-shadow-alpha: 0.1;
+  color-scheme: light;
+}
+
+@layer base {
+  body {
+    @apply bg-app text-fg font-body antialiased;
+    background-image:
+      radial-gradient(circle at 20% -10%, rgb(91 141 239 / 8%), transparent 40%),
+      radial-gradient(circle at 90% 10%, rgb(var(--c-accent) / 6%), transparent 35%);
+    background-attachment: fixed;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  ::selection {
+    @apply bg-gold/30 text-gold-strong;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--c-border)) transparent;
+  }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-thumb { background: rgb(var(--c-border)); border-radius: 8px; }
+}
+
+@layer components {
+  /* The signature element: a bracket-cornered "status window" panel, evoking
+     classic RPG menu frames without leaning on skeuomorphic parchment/pixel cliches. */
+  .status-panel {
+    @apply relative bg-panel/80 backdrop-blur-sm rounded-lg;
+    border: 1px solid rgb(var(--c-accent) / 0.14);
+    box-shadow: 0 8px 24px -8px rgb(0 0 0 / var(--c-shadow-alpha));
+  }
+  .status-panel::before,
+  .status-panel::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+  }
+  .status-panel::before {
+    top: -1px;
+    left: -1px;
+    border-top: 2px solid rgb(var(--c-accent));
+    border-left: 2px solid rgb(var(--c-accent));
+    border-top-left-radius: 4px;
+  }
+  .status-panel::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 2px solid rgb(var(--c-accent));
+    border-right: 2px solid rgb(var(--c-accent));
+    border-bottom-right-radius: 4px;
+  }
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-fg-muted;
+  }
+}

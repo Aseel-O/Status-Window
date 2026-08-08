@@ -1,0 +1,12 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="96" fill="#0B0C14"/>
+  <rect x="40" y="40" width="432" height="432" rx="64" fill="#12131C" stroke="#E8B86D" stroke-width="6"/>
+  <!-- corner brackets -->
+  <path d="M 96 140 L 96 96 L 140 96" stroke="#E8B86D" stroke-width="12" fill="none" stroke-linecap="square"/>
+  <path d="M 416 96 L 460 96 L 460 140" stroke="#E8B86D" stroke-width="12" fill="none" stroke-linecap="square"/>
+  <path d="M 460 372 L 460 416 L 416 416" stroke="#E8B86D" stroke-width="12" fill="none" stroke-linecap="square"/>
+  <path d="M 140 416 L 96 416 L 96 372" stroke="#E8B86D" stroke-width="12" fill="none" stroke-linecap="square"/>
+  <!-- stylized S glyph -->
+  <path d="M 320 176 C 320 150 296 140 262 140 C 220 140 190 162 190 196 C 190 230 220 240 256 248 C 300 258 336 270 336 312 C 336 350 302 372 258 372 C 216 372 186 354 182 320"
+        stroke="#E8B86D" stroke-width="20" fill="none" stroke-linecap="round"/>
+</svg>
